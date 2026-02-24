@@ -14,7 +14,7 @@ Output:
         lo  UNKNOWN   127.0.0.1/8 ::1/128
 
         enp0s1  UP  192.168.64.3/24
-*The enp0s1 is the network and IP that will be used for the lab*
+*The enp0s1 is the interface and IP address that will be used for the lab*
 
 
 ## SSH Service Check
