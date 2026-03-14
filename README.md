@@ -11,6 +11,12 @@ The goal of this project is to make network traffic detection and analysis faste
 
 ## Technology Used
 
+**Packet Capture**: Wireshark, TShark
 
+**Intrusion Detection System**: Suricata (offline PCAP evaluation) 
+
+**Attack Simulation**: Hydra (SSH brute force) 
+
+**Scripting**: Bash (automation + summaries), Python (parsing) 
 
 ## Method To Run
