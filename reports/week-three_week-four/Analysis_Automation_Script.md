@@ -1,6 +1,6 @@
 # Analysis Automation Script
 
-The following script implements an automated way to quickly gather information from an eve.json file following a PCAP analysis from Suricata. 
+The following script automates the process of quickly extracting information from an eve.json file after a Suricata PCAP analysis. 
 
 ## Bash Script Setup
 
@@ -52,7 +52,7 @@ The second if-then statement checks to see if the file exists and if the file is
     if [[ -z "$OUT_PATH" ]]; then
       mkdir -p data/summaries
       TIME = "$(date +%Y%m%d_%H%M%S)"
-      OUT_PATH = "data/summaries/eve_summary_${TIME}.txt"
+      OUT_PATH = "data/summaries/eve_summary_${TIME}.md"
     else
       mkdir -p "$(dirname "$OUT_PATH")"
     fi
@@ -61,5 +61,40 @@ If a specific output file or path is not implemented, it will create a data/summ
 
 Otherwise, if an output file is implemented, then it will output to the existing directory.
 
-## Generate Summary File 
+## Generate Quick Summary File 
 
+    {
+    echo "=== Suricata EVE Quick Summary ==="
+    echo "Source: $EVE_PATH"
+    echo "Generated: $(date): 
+    echo
+
+    echo "[1] Total events:" 
+    wc -l < "$EVE_PATH"
+    echo 
+
+    echo "[2] Event types breakdown (top 10): "
+    grep -o '"event_type":"[^"]*"' "$EVE_PATH" | sort | uniq -c | sort -nr | head -n 10 || true
+    echo
+    
+    echo "[3] Alert count:"
+    grep -c '"event_type":"alert"' "$EVE_PATH" || true
+    echo
+    
+    echo "[4] Top alert signatures (top 10):"
+    grep '"event_type":"alert"' "$EVE_PATH" | grep -o '"signature":"[^"]*"' | sort | uniq -c | sort -nr | head -n 10 || true
+    echo
+
+    echo "[5] Top src_ip in alerts (top 10):"
+    grep '"event_type":"alert"' "$EVE_PATH" | grep -o '"src_ip":"[^"]*"' | sort | uniq -c | sort -nr | head -n 10 || true
+    echo
+
+    echo "[6] Top dest_ip in alerts (top 10):"
+    grep '"event_type":"alert"' "$EVE_PATH" | grep -o '"dest_ip":"[^"]*"' | sort | uniq -c | sort -nr | head -n 10 || true
+    echo
+    } > "$OUT_PATH"
+
+    echo "[+] Wrote summary to: $OUT_PATH"
+
+
+Produces a summary with six different metrics, analyzing the event log quickly and displaying important information into the output file.
