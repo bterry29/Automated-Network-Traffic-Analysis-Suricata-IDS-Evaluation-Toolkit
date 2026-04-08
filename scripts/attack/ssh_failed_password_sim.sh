@@ -31,7 +31,7 @@ echo "[*] Attempts: ${ATTEMPTS} DELAY: ${DELAY}s"
 echo
 
 for i in $(seq 1 "$ATTEMPTS"); do
-## 
+## UserKnownHostsFile=/dev/null: discards host key each iteration
 ## ConnectTimeout=3: fails quick with no target connection
 ## StrictHostKeyChecking=no: avoids prompt for automation purposes (lab-only)
 sshpass -p "$WRONG_PASSWORD" ssh -o UserKnownHostsFile=/dev/null -o ConnectTimeout=3 -o StrictHostKeyChecking=no "${TARGET_USER}@${TARGET_IP}" "exit" >/dev/null 2>&1 || true 
