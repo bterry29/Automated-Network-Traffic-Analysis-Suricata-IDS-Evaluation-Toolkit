@@ -9,9 +9,9 @@ The goal of this project is to make network traffic detection and analysis faste
 ## Setup Instructions
 
 ### 1) Lab Environment (VM Setup)
-- Install Ubuntu Linux onto Local Machine (Link to installation: https://ubuntu.com/download/desktop)
+- Create a Ubuntu VM (UTM) (Link to installation: https://ubuntu.com/download/desktop)
 - Install Suricata on the Ubuntu machine (Command: sudo apt install -y suricata)
-- Install packet capture software: Wireshark, tcpdump, dumpcap (Command: sudo apt install -y wireshark, tcpdump, tshark)   
+- Install packet capture software: Wireshark, tcpdump, dumpcap (Command: sudo apt install -y wireshark tcpdump tshark)   
 - Download and install the VirtualBox platform (https://www.virtualbox.org/wiki/Downloads)
 - Download Kali Linux VirtualBox pre-built image (https://www.kali.org/get-kali/#kali-platforms)
 
@@ -32,7 +32,7 @@ On Ubuntu Machine:
 ### 4) Verify Connection (Kali -> Ubuntu)
 On Kali: 
 
-    ping -c 4 <UBUNUT_IP>
+    ping -c 4 <UBUNTU_IP>
     ssh testuser1@<UBUNTU_IP>
 
 ## Technology Used
@@ -61,7 +61,7 @@ Produces a full run folder: PCAP, Suricata logs, summary, and metadata:
 ### 2) SSH Brute-force Run (Manual Trigger from Kali)
 Step 1: Run orchestrator script on Ubuntu (example 30 seconds):
 
-    .scripts/run_ssh_bruteforce_manual.sh <interface> 30
+    ./scripts/run_ssh_bruteforce_manual.sh <interface> 30
     
 The script will begin capturing and then pause with instructions. While the capture is running, perform the next step on Kali.
 
@@ -69,11 +69,11 @@ Step 2: Run one of two attack scripts on Kali:
 
 OPTION 1 (Connection-Attempt Simulation)
 
-    .scripts/ssh_bruteforce_sim.sh <UBUNTU_IP> testuser1 20 0.2
+    ./scripts/ssh_bruteforce_sim.sh <UBUNTU_IP> testuser1 20 0.2
 
 OPTION 2 (Failed-Password Simulation) 
 
-    .scripts/ssh_failed_password_sim.sh <UBUNTU_IP> testuser1 20 0.2
+    ./scripts/ssh_failed_password_sim.sh <UBUNTU_IP> testuser1 20 0.2
 
 After the Kali script finishes, return to Ubuntu and press ENTER when prompted. Ubuntu will then run Suricata offline and generate the summary and metadata automatically.
 
