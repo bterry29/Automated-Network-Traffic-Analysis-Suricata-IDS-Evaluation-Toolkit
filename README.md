@@ -58,24 +58,40 @@ Produces a full run folder: PCAP, Suricata logs, summary, and metadata:
 
     ./scripts/run_baseline.sh 15
 
+**Outputs** (created under runs/)
+
+      runs/baseline_<timestamp>/pcap/baseline.pcap
+      runs/baseline_<timestamp>/suricata/ (eve.json, fast.log, stats.log, suricata.log)
+      runs/baseline_<timestamp>/summary.md
+      runs/baseline_<timestamp>/metadata.json
+
 ### 2) SSH Brute-force Run (Manual Trigger from Kali)
-Step 1: Run orchestrator script on Ubuntu (example 30 seconds):
+**Step 1**: Run orchestrator script on Ubuntu (example 30 seconds):
 
     ./scripts/run_ssh_bruteforce_manual.sh <interface> 30
     
-The script will begin capturing and then pause with instructions. While the capture is running, perform the next step on Kali.
+The script will begin capturing, then pause to provide instructions. While the capture is running, perform the next step on Kali.
 
-Step 2: Run one of two attack scripts on Kali:
+**Step 2**: Run one of two attack scripts on Kali:
 
-OPTION 1 (Connection-Attempt Simulation)
+**OPTION 1** (Connection-Attempt Simulation)
 
     ./scripts/ssh_bruteforce_sim.sh <UBUNTU_IP> testuser1 20 0.2
 
-OPTION 2 (Failed-Password Simulation) 
+**OPTION 2** (Failed-Password Simulation) 
 
     ./scripts/ssh_failed_password_sim.sh <UBUNTU_IP> testuser1 20 0.2
 
-After the Kali script finishes, return to Ubuntu and press ENTER when prompted. Ubuntu will then run Suricata offline and generate the summary and metadata automatically.
+After the Kali script finishes, return to Ubuntu and press ENTER when prompted. Ubuntu will then run Suricata offline and automatically generate the summary and metadata.
+
+
+**Outputs** (created under runs/)
+
+      runs/ssh_bruteforce_<timestamp>/pcap/ssh_bruteforce.pcap
+      runs/ssh_bruteforce_<timestamp>/suricata/ (eve.json, fast.log, stats.log, suricata.log)
+      runs/ssh_bruteforce_<timestamp>/summary.md
+      runs/ssh_bruteforce_<timestamp>/metadata.json
+
 
 ### View Results
 After any run, the two most useful files to inspect are:
