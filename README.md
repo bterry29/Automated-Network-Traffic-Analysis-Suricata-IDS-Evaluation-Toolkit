@@ -8,6 +8,12 @@ The goal of this project is to make network traffic detection and analysis faste
 
 ## Setup Instructions
 
+- Install Ubuntu Linux onto Local Machine (Link to installation: https://ubuntu.com/download/desktop)
+- Install Suricata on the Ubuntu machine (Command: sudo apt install -y suricata)
+- Install packet capture software: Wireshark, tcpdump, dumpcap (Command: sudo apt install -y wireshark, tcpdump, dumpcap)   
+- Download and install the VirtualBox platform (https://www.virtualbox.org/wiki/Downloads)
+- Download Kali Linux VirtualBox pre-built image (https://www.kali.org/get-kali/#kali-platforms)
+
 
 ## Technology Used
 
