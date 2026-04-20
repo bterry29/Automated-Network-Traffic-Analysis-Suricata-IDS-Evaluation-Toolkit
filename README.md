@@ -93,6 +93,14 @@ After the Kali script finishes, return to Ubuntu and press ENTER when prompted. 
       runs/ssh_bruteforce_<timestamp>/metadata.json
 
 
+### 3) SSH Brute-Force Fully Automated
+Produces a full run folder with a single command line on Ubuntu:
+
+      ./scripts/run_ssh_bruteforce_auto.sh <private_iface> <seconds> [attempts] [delay]
+
+Uses private VM-to-VM subnet and SSH key authentication to trigger Kali remotely
+
+
 ### View Results
 After any run, the two most useful files to inspect are:
 
@@ -103,5 +111,11 @@ Summary report:
 Human-readable alerts:
 
     runs/<run_id>/suricata/fast.log
+
+###  Quick Comparison Script (baseline vs brute-force simulation)
+
+      .scripts/analysis/compare_runs.sh <baseline_run_id> <bruteforce_run_id>
+
+Outputs a markdown report comparing the baseline run and the brute-force run summaries to help analyze the differences
 
 
