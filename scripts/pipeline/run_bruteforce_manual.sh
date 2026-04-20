@@ -9,7 +9,7 @@ set -euo pipefail
 # 5. Generate summary report from eve.json
 # 6. Save run metadata
 
-# Usage: ./scripts/run_bruteforce_manual.sh <interface> <duration_seconds>
+# Usage: ./scripts/pipeline/run_bruteforce_manual.sh <interface> <duration_seconds>
 
 IFACE="${1:-}"
 DURATION="${2:-}"
