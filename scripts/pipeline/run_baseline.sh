@@ -7,7 +7,7 @@ set -euo pipefail
 # 3. Generate summary report from eve.json
 # 4. Save run metadata
 
-# Usage: ./scripts/run_baseline.sh <interface> <duration_seconds>
+# Usage: ./scripts/pipeline/run_baseline.sh <interface> <duration_seconds>
 
 IFACE="${1:-}"
 DURATION="${2:-}"
