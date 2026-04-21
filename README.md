@@ -29,7 +29,26 @@ On Ubuntu Machine:
 
     sudo adduser testuser1
 
-### 4) Verify Connection (Kali -> Ubuntu)
+### 4) VM to VM Subnet Setup (Required for full automation)
+Goal:
+- ping each other on a private subnet
+- Ubuntu must be able to SSH into Kali using that private IP
+
+#### 1. Add a second network adapter on each VM (Private subnet)
+Kali VirtualBox:
+- Adapter 1: NAT (internet)
+- Adapter 2: Host-only (private subnet)
+
+UTM:
+- Keep the existing network for the internet
+- Add a second network device set to Host Only / Private network mode
+
+#### 2. Verity that the private network works
+On both VM's:
+
+      ip -br a
+
+### 5) Verify Connection (Both Ways)
 On Kali: 
 
     ping -c 4 <UBUNTU_IP>
@@ -43,7 +62,7 @@ On Kali:
 
 **Attack Simulation**: ssh, sshpass (failed-password simulation) 
 
-**Scripting**: Bash (automation + summaries), Python (parsing) 
+**Scripting**: Bash (automation + summaries)
 
 ## Method To Run
 
@@ -114,7 +133,7 @@ Human-readable alerts:
 
 ###  Quick Comparison Script (baseline vs brute-force simulation)
 
-      .scripts/analysis/compare_runs.sh <baseline_run_id> <bruteforce_run_id>
+      ./scripts/analysis/compare_runs.sh <baseline_run_id> <bruteforce_run_id>
 
 Outputs a markdown report comparing the baseline run and the brute-force run summaries to help analyze the differences
 
